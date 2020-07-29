@@ -1,0 +1,133 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,700);
+*, *::after, *::before {
+  box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  min-height: 100%; }
+
+body {
+  margin: 0;
+  background: #3D5A59;
+  font-family: 'Raleway', Arial, sans-serif; }
+
+.section {
+  text-align: center;
+  height: 100%;
+  margin: 0 auto;
+  padding: 6em 0; }
+  .section__title {
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #fff;
+    margin-bottom: 3em; }
+  .section--aava {
+    background: #2994B2; }
+  .section--tuuli {
+    background: #474744; }
+  .section--vesi {
+    background: #54567A; }
+  .section--sade {
+    background: #2D4659; }
+  .section--ilma {
+    background: #095062; }
+  .section--tuli {
+    background: #068B78; }
+
+.toggle-button {
+  margin: 0 20px; }
+
+/*
+ * Toggle button styles
+ */
+.toggle-button {
+  position: relative;
+  display: inline-block;
+  color: #fff; }
+  .toggle-button label {
+    display: inline-block;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: left; }
+  .toggle-button input {
+    display: none; }
+  .toggle-button__icon {
+    cursor: pointer;
+    pointer-events: none; }
+    .toggle-button__icon:before, .toggle-button__icon:after {
+      content: "";
+      position: absolute;
+      top: 45%;
+      left: 35%;
+      transition: 0.2s ease-out; }
+
+/*
+ * Toggle button variables
+ */
+
+/*
+ * Toggle button styles
+ */
+.toggle-button--vesi label {
+  height: 25px;
+  line-height: 25px;
+  transition: all 0.2s;
+  border-radius: 2rem; }
+  .toggle-button--vesi label:before, .toggle-button--vesi label:after {
+    position: absolute;
+    right: 1.5rem;
+    transition: all 0.2s .15s ease-out; }
+  .toggle-button--vesi label:before {
+    content: attr(data-on-text); }
+  .toggle-button--vesi label:after {
+    content: attr(data-off-text); }
+
+.toggle-button--vesi input[type=checkbox] + label {
+  
+  background: #FF5335; }
+  .toggle-button--vesi input[type=checkbox] + label:before {
+    opacity: 0;
+    transform: translate(0, 20px); }
+  .toggle-button--vesi input[type=checkbox] + label:after {
+    opacity: 1;
+    transform: translate(0, 0); }
+
+.toggle-button--vesi input[type=checkbox]:checked ~ label {
+  
+  background: #61B136; }
+  .toggle-button--vesi input[type=checkbox]:checked ~ label:before {
+    opacity: 1;
+    transform: translate(0, 0); }
+  .toggle-button--vesi input[type=checkbox]:checked ~ label:after {
+    opacity: 0;
+    transform: translate(0, -20px); }
+
+.toggle-button--vesi input[type=checkbox]:checked ~ .toggle-button__icon:before {
+  transform: translate(-35%, 40%) rotate(45deg);
+  width: 11px; }
+
+.toggle-button--vesi input[type=checkbox]:checked ~ .toggle-button__icon:after {
+  transform: translate(20%) rotate(-45deg); }
+
+.toggle-button--vesi .toggle-button__icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 25px;
+  width: 25px; }
+  .toggle-button--vesi .toggle-button__icon:before, .toggle-button--vesi .toggle-button__icon:after {
+    height: 3px;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1); }
+  .toggle-button--vesi .toggle-button__icon:before {
+    width: 12px;
+    transform: rotate(90deg); }
+  .toggle-button--vesi .toggle-button__icon:after {
+    width: 12px;
+    transform: rotate(0); }
+
+/*
+ * Toggle button variables
+ */

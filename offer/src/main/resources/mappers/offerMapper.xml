@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ykc.offer.mapper.offerMapper">
+
+	<select id="getTestOffer" resultType="HashMap">
+		SELECT 
+		NAME,
+		  SUM(if(SUBSTR(OFFER_DTM,1,6) = '201901', OFFER_VAL, NULL)) AS '01월',
+		  SUM(if(SUBSTR(OFFER_DTM,1,6) = '201902', OFFER_VAL, NULL)) AS '02월',
+		  SUM(if(SUBSTR(OFFER_DTM,1,6) = '201903', OFFER_VAL, NULL)) AS '03월',
+		  SUM(if(SUBSTR(OFFER_DTM,1,6) = '201904', OFFER_VAL, NULL)) AS '04월',
+		  SUM(if(SUBSTR(OFFER_DTM,1,6) = '201905', OFFER_VAL, NULL)) AS '05월',
+		  SUM(if(SUBSTR(OFFER_DTM,1,6) = '201906', OFFER_VAL, NULL)) AS '06월',
+		  SUM(if(SUBSTR(OFFER_DTM,1,6) = '201907', OFFER_VAL, NULL)) AS '07월',
+		  SUM(if(SUBSTR(OFFER_DTM,1,6) = '201908', OFFER_VAL, NULL)) AS '08월',
+		  SUM(if(SUBSTR(OFFER_DTM,1,6) = '201909', OFFER_VAL, NULL)) AS '09월',
+		  SUM(if(SUBSTR(OFFER_DTM,1,6) = '201910', OFFER_VAL, NULL)) AS '10월',
+		  SUM(if(SUBSTR(OFFER_DTM,1,6) = '201911', OFFER_VAL, NULL)) AS '11월'
+		 FROM OFFER
+		 WHERE OFFER_TYP = 1
+		GROUP BY NAME;
+	</select>
+	
+	
+	<select id="getOfferByDateCd" parameterType="com.ykc.offer.offer.vo.OfferVO" resultType="HashMap">
+        SELECT 
+          NAME
+          <foreach collection="offerDateList" item="date" >                     
+            ,SUM(if(SUBSTR(OFFER_DTM,1,6) = '${date}', OFFER_VAL, NULL)) AS '${date}'
+          </foreach>  
+            ,SUM(if(SUBSTR(OFFER_DTM,1,6) BETWEEN #{startYM} AND #{endYM}, OFFER_VAL, NULL)) AS 'TOTAL'     
+         FROM OFFER
+         WHERE OFFER_TYP IN (
+         <foreach collection="cdList" item="cd" separator=",">
+            '${cd}'
+         </foreach>       
+         )         
+        GROUP BY NAME;
+    </select>
+    
+    
+    <select id="getOfferDateList" resultType="String">
+        SELECT 
+            DISTINCT SUBSTR(OFFER_DTM,1,6) OFFER_DTM_YM  
+        FROM OFFER
+        WHERE 
+            SUBSTR(OFFER_DTM,1,6) BETWEEN #{startYM} AND #{endYM}
+    </select>
+	
+	<select id="getOfferTypByCh" resultType="com.ykc.offer.offer.vo.OfferTypVO">
+        SELECT OFFER_TYP_CD,
+            OFFER_TYP_NAME,
+            CH_NO,
+            length(OFFER_TYP_NAME) OFFER_TYP_NAME_LENGTH 
+        FROM OFFER_TYP
+           WHERE CH_NO = #{ch_no}
+    </select>
+</mapper> 
