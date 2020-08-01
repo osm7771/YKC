@@ -65,7 +65,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        	헌금
+        	헌금 조회
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -87,12 +87,28 @@
         </div>
       </li>
 
-      <!-- Nav Item - Charts -->
+      <div class="sidebar-heading">
+                            헌금 입력
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>    
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>헌금</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">            
+            <h6 class="collapse-header">개별 입력</h6>
+            <a class="collapse-item" href="404.html">개별입력</a>
+            <a class="collapse-item" href="blank.html">엑셀 업로드</a>
+            <h6 class="collapse-header">조회</h6>
+            <a class="collapse-item" href="/offer/searchM">성도별 종합</a>
+            <a class="collapse-item" href="register.html">항목별 종합</a>            
+            <div class="collapse-divider"></div>
+          </div>
+        </div>
+      </li>   
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

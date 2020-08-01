@@ -3,7 +3,9 @@
 <mapper namespace="com.ykc.offer.mapper.memberMapper">
 
 	<select id="getMemberList" resultType="com.ykc.offer.member.vo.MemberVO">
-		SELECT * FROM MEMBER
+		SELECT MEMBER_NO , NAME, FAMILY_NAME , TYPE , CH_NAME FROM MEMBER
+		LEFT OUTER JOIN FAMILY ON MEMBER.FAMILY_ID = FAMILY.FAMILY_ID
+		LEFT OUTER JOIN CHURCH ON MEMBER.CH_NO = CHURCH.CH_NO
 	</select>	
 	
 	

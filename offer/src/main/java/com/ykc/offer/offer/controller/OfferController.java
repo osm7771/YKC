@@ -62,12 +62,12 @@ public class OfferController {
 		List<Map<String, Object>> OfferList = offerService.getOfferByDateCd(offerVO);
 		List<Map<String, Object>> testOfferList = offerService.getTestOffer();
 		
-		for(int i = 0; i<OfferList.size();i++){
+		/*for(int i = 0; i<OfferList.size();i++){
 			Map<String, Object> tmp = OfferList.get(i);
 			byte[] bytes = (byte[])tmp.get("NAME");
 			String nameStr = new String(bytes, StandardCharsets.UTF_8);
 			tmp.put("NAME", nameStr);
-		}	
+		}	*/
 		
 		model.addAttribute("offerVO", offerVO);
 		model.addAttribute("OfferList", OfferList);

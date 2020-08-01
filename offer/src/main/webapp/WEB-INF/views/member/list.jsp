@@ -52,22 +52,12 @@
                     <tr>
                       <th>번호</th>
                       <th>이름</th>
-                      <th>가정번호</th>
+                      <th>가정</th>
                       <th>대빵여부</th>
-                      <th>교회번호</th>
+                      <th>교회이름</th>
                       
                     </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>번호</th>
-                      <th>이름</th>
-                      <th>가족번호</th>
-                      <th>대빵여부</th>
-                      <th>교회번호</th>
-                      
-                    </tr>
-                  </tfoot>
+                  </thead>                  
                   <tbody>
                   	<c:forEach var="member" items="${mberList}">
 						<tr>
@@ -75,11 +65,11 @@
 					      <td>${member.name}</td>					     
 					      <td>
 					      <c:choose>
-					      	<c:when test="${member.family_id eq null}">
+					      	<c:when test="${member.family_name eq null}">
 					      		-
 					      	</c:when>
 					      	<c:otherwise>
-					      		${member.family_id}
+					      		${member.family_name}
 					      	</c:otherwise>
 					      </c:choose>		
 					      </td>					     
@@ -93,7 +83,7 @@
 					      	</c:otherwise>
 					      </c:choose>					      
 					      </td>					     
-					      <td>${member.ch_no}</td>					     
+					      <td>${member.ch_name}</td>					     
 					    </tr>
 					</c:forEach>
                     

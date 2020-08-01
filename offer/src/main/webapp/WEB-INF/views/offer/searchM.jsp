@@ -21,7 +21,9 @@ lentg2 = (lentg2 * 15) + 60;
 
 <script type="text/javascript">
 
-
+function goSubmit(){
+	 $("#offerForm").submit();
+}
 
 </script>
 
@@ -114,19 +116,16 @@ lentg2 = (lentg2 * 15) + 60;
 			            </c:forEach> 			            
 	                </div>
 	              </div>
+	              
+	              <a href="javascript:goSubmit()" class="btn btn-success btn-icon-split btn-lg">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    <span class="text" style="width: 200px;">검색</span>
+                  </a>
 	
-	              <div class="card mb-4 py-3 border-left-success">
-	                <div class="card-body">
-	                   <a href="#submit" class="btn btn-success btn-icon-split">
-	                    <span class="icon text-white-50">
-	                      <i class="fas fa-check"></i>
-	                    </span>
-	                    <span class="text">Split Button Success</span>
-	                  </a>
-	                  <input type="submit" value="submit"/>
-	                </div>
-	              </div>
-	
+	            
+	               <!-- 
 	              <div class="card mb-4 py-3 border-left-info">
 	                <div class="card-body">
 	                  .border-left-info
@@ -150,6 +149,9 @@ lentg2 = (lentg2 * 15) + 60;
 	                  .border-left-dark
 	                </div>
 	              </div>
+	               -->
+	               
+	               
             	</div>
           	</form>  	         		
         	</div>      

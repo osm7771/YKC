@@ -9,6 +9,9 @@ public class MemberVO {
 	private String type = null;
 	private String ch_no = null;
 	
+	private String family_name = null;
+	private String ch_name = null;
+	
 	
 	public String getMember_id() {
 		return member_id;
@@ -47,6 +50,19 @@ public class MemberVO {
 	public void setCh_no(String ch_no) {
 		this.ch_no = ch_no;
 	}
+	public String getFamily_name() {
+		return family_name;
+	}
+	public void setFamily_name(String family_name) {
+		this.family_name = family_name;
+	}
+	public String getCh_name() {
+		return ch_name;
+	}
+	public void setCh_name(String ch_name) {
+		this.ch_name = ch_name;
+	}
+	
 	
 
 	
