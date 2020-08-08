@@ -50,7 +50,7 @@ function goSubmit(){
 
         <!-- Begin Page Content -->
         	<div class="container-fluid">
-            <form name="offerForm" id="offerForm" action="/offer/resultM" method="post">
+            <form name="offerForm" id="offerForm" action="/offer/resultMembTotal" method="post">
           	<!-- Page Heading -->
           		<h1 class="h3 mb-4 text-gray-800">성도별 검색</h1>
           		
@@ -123,6 +123,34 @@ function goSubmit(){
                     </span>
                     <span class="text" style="width: 200px;">검색</span>
                   </a>
+	
+	            
+	               <!-- 
+	              <div class="card mb-4 py-3 border-left-info">
+	                <div class="card-body">
+	                  .border-left-info
+	                </div>
+	              </div>
+	
+	              <div class="card mb-4 py-3 border-left-warning">
+	                <div class="card-body">
+	                  .border-left-warning
+	                </div>
+	              </div>
+	
+	              <div class="card mb-4 py-3 border-left-danger">
+	                <div class="card-body">
+	                  .border-left-danger
+	                </div>
+	              </div>
+	
+	              <div class="card mb-4 py-3 border-left-dark">
+	                <div class="card-body">
+	                  .border-left-dark
+	                </div>
+	              </div>
+	               -->
+	               
 	               
             	</div>
           	</form>  	         		

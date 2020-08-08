@@ -33,7 +33,8 @@
          WHERE OFFER_TYP IN (
          <foreach collection="cdList" item="cd" separator=",">
             '${cd}'
-         </foreach>       
+         </foreach>    
+         AND CH_NO = #{ch_no}   
          )         
         GROUP BY NAME;
     </select>
@@ -54,5 +55,22 @@
             length(OFFER_TYP_NAME) OFFER_TYP_NAME_LENGTH 
         FROM OFFER_TYP
            WHERE CH_NO = #{ch_no}
+    </select>
+    
+    <select id="getOfferByMemberNo" resultType="com.ykc.offer.offer.vo.OfferVO">    
+        SELECT 
+			SEQ,
+			MEMBER_NO,
+			CH_NO,
+			STR_TO_DATE(INPUT_DTM, '%Y%m%d') INPUT_DTM,
+			STR_TO_DATE(MOD_DTM, '%Y%m%d') MOD_DTM,
+			WEEK_NUM,
+			OFFER_VAL,
+			NAME,
+			STR_TO_DATE(OFFER_DTM, '%Y%m%d') OFFER_DTM,
+			(SELECT OFFER_TYP_NAME FROM OFFER_TYP WHERE CH_NO = O.CH_NO AND OFFER_TYP_CD = O.OFFER_TYP_CD) OFFER_TYP_CD
+		FROM OFFER O
+			WHERE O.MEMBER_NO = #{member_no}
+			AND O.CH_NO = #{ch_no}
     </select>
 </mapper> 

@@ -65,43 +65,39 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        	헌금 조회
+        	<span>헌금 관리</span>
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOfferView" aria-expanded="true" aria-controls="collapseOfferView">
           <i class="fas fa-fw fa-folder"></i>
-          <span>헌금</span>
+          <span>헌금 조회</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapseOfferView" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">조회</h6>
-            <a class="collapse-item" href="/offer/searchM">성도별 종합</a>
-            <a class="collapse-item" href="register.html">항목별 종합</a>            
+            <h6 class="collapse-header">개별</h6>
+            <a class="collapse-item" href="/offer/searchMemb">성도별 조회</a>
+            <a class="collapse-item" href="/offer/searchTyp">항목별 조회</a>            
             <div class="collapse-divider"></div>
-            <h6 class="collapse-header">입력</h6>
-            <a class="collapse-item" href="404.html">개별입력</a>
-            <a class="collapse-item" href="blank.html">엑셀 업로드</a>
+            <h6 class="collapse-header">종합</h6>
+            <a class="collapse-item" href="/offer/searchMembTotal">성도별 종합</a>
+            <a class="collapse-item" href="/offer/searchTypTotal">항목별 종합</a>   
           </div>
         </div>
       </li>
 
-      <div class="sidebar-heading">
-                            헌금 입력
-      </div>
-
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOfferInsert" aria-expanded="true" aria-controls="collapseOfferInsert">
           <i class="fas fa-fw fa-folder"></i>
-          <span>헌금</span>
+          <span>헌금 입력</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapseOfferInsert" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">            
             <h6 class="collapse-header">개별 입력</h6>
-            <a class="collapse-item" href="404.html">개별입력</a>
-            <a class="collapse-item" href="blank.html">엑셀 업로드</a>
+            <a class="collapse-item" href="/offer/membList">성도별 입력</a>
+            <a class="collapse-item" href="/offer/offerMembList">항목별 입력</a>
             <h6 class="collapse-header">조회</h6>
             <a class="collapse-item" href="/offer/searchM">성도별 종합</a>
             <a class="collapse-item" href="register.html">항목별 종합</a>            

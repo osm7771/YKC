@@ -34,9 +34,7 @@ public class OfferServiceImpl implements OfferService{
 	}
 	
 	@Override
-	public List<OfferTypVO> getOfferTypByCh(){
-		ChurchVo churchVo = new ChurchVo();
-		churchVo.setCh_no("CH00001");
+	public List<OfferTypVO> getOfferTypByCh(ChurchVo churchVo){		
 		return offerDAO.getOfferTypByCh(churchVo);
 	}
 	
@@ -44,6 +42,12 @@ public class OfferServiceImpl implements OfferService{
 	public List<String> getOfferDateList(OfferVO offerVO) {
 		// TODO Auto-generated method stub
 		return offerDAO.getOfferDateList(offerVO);
+	}
+	
+	@Override
+	public List<OfferVO> getOfferByMemberNo(MemberVO memberVO) {
+		// TODO Auto-generated method stub
+		return offerDAO.getOfferByMemberNo(memberVO);
 	}
 	
 	

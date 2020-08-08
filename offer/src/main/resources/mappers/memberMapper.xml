@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ykc.offer.mapper.memberMapper">
 
-	<select id="getMemberList" resultType="com.ykc.offer.member.vo.MemberVO">
+	<select id="getMemberListByChNo" resultType="com.ykc.offer.member.vo.MemberVO">
 		SELECT MEMBER_NO , NAME, FAMILY_NAME , TYPE , CH_NAME FROM MEMBER
 		LEFT OUTER JOIN FAMILY ON MEMBER.FAMILY_ID = FAMILY.FAMILY_ID
 		LEFT OUTER JOIN CHURCH ON MEMBER.CH_NO = CHURCH.CH_NO
+		WHERE MEMBER.CH_NO = #{ch_no}
 	</select>	
 	
 	

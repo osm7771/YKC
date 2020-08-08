@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ykc.offer.church.vo.ChurchVo;
 import com.ykc.offer.member.dao.MemberDAO;
 import com.ykc.offer.member.vo.MemberVO;
 
@@ -17,9 +18,9 @@ public class MemberServiceImpl implements MemberService{
 	
 	
 	@Override
-	public List<MemberVO> getMemberList () {
+	public List<MemberVO> getMemberListByChNo (ChurchVo churchVo) {
 		// TODO Auto-generated method stub
-		return memberDAO.getMemberList();
+		return memberDAO.getMemberListByChNo(churchVo);
 	}
 	
 	@Override

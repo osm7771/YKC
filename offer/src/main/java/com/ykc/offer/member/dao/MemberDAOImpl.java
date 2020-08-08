@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ykc.offer.church.vo.ChurchVo;
 import com.ykc.offer.member.vo.MemberVO;
 
 
@@ -17,10 +18,10 @@ public class MemberDAOImpl implements MemberDAO{
 	private SqlSession sqlSession;	
 	
 	@Override
-	public List<MemberVO> getMemberList() {
+	public List<MemberVO> getMemberListByChNo(ChurchVo churchVo) {
 		// TODO Auto-generated method stub
 		
-		return sqlSession.selectList(namespace+".getMemberList");
+		return sqlSession.selectList(namespace+".getMemberListByChNo",churchVo);
 	}
 	
 	@Override

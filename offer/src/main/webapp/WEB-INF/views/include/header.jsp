@@ -20,6 +20,7 @@
   <!-- checkBox_vesi -->
   <link href="${pageContext.request.contextPath}/resources/css/checkBox_vesi.css" rel="stylesheet">
   
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   
   <!-- Bootstrap core JavaScript-->
   <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
@@ -37,3 +38,9 @@
 
   <!-- Page level custom scripts -->
   <script src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
+
+

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ykc.offer.church.vo.ChurchVo;
+import com.ykc.offer.member.vo.MemberVO;
 import com.ykc.offer.offer.vo.OfferVO;
 import com.ykc.offer.offer.vo.OfferTypVO;
 
@@ -42,6 +43,11 @@ public class OfferDAOImpl implements OfferDAO{
 	@Override
 	public List<String> getOfferDateList(OfferVO offerVO){
 		return sqlSession.selectList(namespace+".getOfferDateList",offerVO);
+	}
+	
+	@Override
+	public List<OfferVO> getOfferByMemberNo(MemberVO memberVO){
+		return sqlSession.selectList(namespace+".getOfferByMemberNo",memberVO);
 	}
 
 }
