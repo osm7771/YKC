@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ykc.offer.church.vo.ChurchVo;
-import com.ykc.offer.member.dao.MemberDAO;
+import com.ykc.offer.common.dao.YkcSeqDAO;
+import com.ykc.offer.common.vo.YkcSeqVO;
 import com.ykc.offer.member.vo.MemberVO;
 import com.ykc.offer.offer.dao.OfferDAO;
 import com.ykc.offer.offer.vo.OfferTypVO;
@@ -20,6 +21,9 @@ public class OfferServiceImpl implements OfferService{
 	@Autowired
 	private OfferDAO offerDAO ;
 	
+	@Autowired
+	private YkcSeqDAO seqDAO;
+	
 	
 	@Override
 	public List<Map<String, Object>> getTestOffer() {
@@ -28,9 +32,15 @@ public class OfferServiceImpl implements OfferService{
 	}
 	
 	@Override
-	public List<Map<String, Object>> getOfferByDateCd(OfferVO offerVO) {
+	public List<Map<String, Object>> getOfferTotalListByDateCd(OfferVO offerVO) {
 		// TODO Auto-generated method stub
-		return offerDAO.getOfferByDateCd(offerVO);
+		return offerDAO.getOfferTotalListByDateCd(offerVO);
+	}
+	
+	@Override
+	public List<Map<String, Object>> getOfferTotalListByTyp(OfferVO offerVO) {
+		// TODO Auto-generated method stub
+		return offerDAO.getOfferTotalListByTyp(offerVO);
 	}
 	
 	@Override
@@ -48,6 +58,23 @@ public class OfferServiceImpl implements OfferService{
 	public List<OfferVO> getOfferByMemberNo(MemberVO memberVO) {
 		// TODO Auto-generated method stub
 		return offerDAO.getOfferByMemberNo(memberVO);
+	}
+	
+	@Override	
+	public int insertOffer(OfferVO offerVO) {
+		// TODO Auto-generated method stub
+		
+		YkcSeqVO seqVO = new YkcSeqVO();
+		
+		seqVO.setTable_name("OFFER");
+		seqVO.setSeq_id("SEQ");		
+		
+		offerVO.setSeq(seqDAO.getOfferSeq(seqVO));
+		
+		System.out.println("================= : " + offerVO.getSeq());
+		
+		return offerDAO.insertOffer(offerVO);
+		
 	}
 	
 	

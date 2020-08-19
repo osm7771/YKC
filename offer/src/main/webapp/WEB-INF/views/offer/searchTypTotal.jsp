@@ -7,7 +7,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-
 <head>
 
   <%@ include file="../include/header.jsp" %>
@@ -43,9 +42,9 @@ function goSubmit(){
 
         <!-- Begin Page Content -->
         	<div class="container-fluid">
-            <form name="offerForm" id="offerForm" action="/offer/resultMembTotal" method="post">
+            <form name="offerForm" id="offerForm" action="/offer/resultTypTotal" method="post">
           	<!-- Page Heading -->
-          		<h1 class="h3 mb-4 text-gray-800">성도별 종합 검색</h1>
+          		<h1 class="h3 mb-4 text-gray-800">항목별 종합 검색</h1>
           		
           		
           		<div class="col-lg-6">

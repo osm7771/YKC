@@ -6,6 +6,8 @@
   <meta name="author" content="">
 
   <title>헌금 관리</title>
+  
+  
 
   <!-- Custom fonts for this template -->
   <link href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,7 +42,11 @@
   <script src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>
+    var $j171 = jQuery.noConflict();
+  </script>
   <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+  
 
 
 

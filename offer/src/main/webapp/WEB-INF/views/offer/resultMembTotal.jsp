@@ -84,7 +84,15 @@
 
       </div>
       <!-- End of Main Content -->
-	<%@ include file="../include/footer.jsp" %>
+      
+      <%@ include file="../include/footer.jsp" %>
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+	<%@ include file="../include/footer2.jsp" %>
 </body>
 
 </html>

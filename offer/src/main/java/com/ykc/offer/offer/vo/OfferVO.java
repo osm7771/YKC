@@ -4,13 +4,13 @@ import java.util.List;
 
 public class OfferVO {
 	
-	private String seq = null;
+	private int seq = 0;
 	private String member_id = null;
 	private String member_no = null;
 	private String ch_no = null;
 	private String input_dtm = null;
 	private String mod_dtm = null;
-	private String week_num = null;
+	private int week_num = 0;
 	private String offer_typ = null;
 	private String offer_val = null;
 	private String name = null;
@@ -25,10 +25,11 @@ public class OfferVO {
 	private String startYM = null; 
 	private String endYM = null;
 	
-	public String getSeq() {
+	
+	public int getSeq() {
 		return seq;
 	}
-	public void setSeq(String seq) {
+	public void setSeq(int seq) {
 		this.seq = seq;
 	}
 	public String getMember_id() {
@@ -61,10 +62,10 @@ public class OfferVO {
 	public void setMod_dtm(String mod_dtm) {
 		this.mod_dtm = mod_dtm;
 	}
-	public String getWeek_num() {
+	public int getWeek_num() {
 		return week_num;
 	}
-	public void setWeek_num(String week_num) {
+	public void setWeek_num(int week_num) {
 		this.week_num = week_num;
 	}
 	public String getOffer_typ() {

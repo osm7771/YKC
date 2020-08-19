@@ -12,11 +12,15 @@ public interface OfferService {
 	
 	public List<Map<String, Object>> getTestOffer();
 	
-	public List<Map<String, Object>> getOfferByDateCd(OfferVO offerVO);
+	public List<Map<String, Object>> getOfferTotalListByDateCd(OfferVO offerVO);
+	
+	public List<Map<String, Object>> getOfferTotalListByTyp(OfferVO offerVO);
 	
 	public List<OfferTypVO> getOfferTypByCh(ChurchVo churchVo);
 	
 	public List<String> getOfferDateList(OfferVO offerVO);
 	
 	public List<OfferVO> getOfferByMemberNo(MemberVO memberVO);
+	
+	public int insertOffer(OfferVO offerVO);
 }

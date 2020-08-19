@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ykc.offer.mapper.ykcSeqMapper">
+    
+    <update id="updateOfferSeq" parameterType="com.ykc.offer.common.vo.YkcSeqVO" >
+        UPDATE YKC_SEQ
+		SET 
+		SEQ = SEQ + 1
+		WHERE TABLE_NAME = #{table_name}
+		AND SEQ_ID = #{seq_id}		
+    </update>     
+
+    <select id="getOfferSeq" parameterType="com.ykc.offer.common.vo.YkcSeqVO" resultType="int">
+        SELECT SEQ FROM YKC_SEQ WHERE TABLE_NAME = #{table_name} AND SEQ_ID = #{seq_id}
+    </select>
+       
+</mapper> 

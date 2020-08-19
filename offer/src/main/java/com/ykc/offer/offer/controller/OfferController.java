@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +33,18 @@ public class OfferController {
 	private MemberService memberService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(OfferController.class);
+	
+	@RequestMapping(value = "/searchMembTotal", method=RequestMethod.GET)
+	public String searchMembTotal( @Church ChurchVo churchVo, Model model,HttpServletRequest request) {
+		/**
+		 * offer 
+		 */
+
+		List<OfferTypVO> OfferTypList = offerService.getOfferTypByCh(churchVo);	
+		model.addAttribute("OfferTypList", OfferTypList);
+		
+		return "offer/searchMembTotal";
+	}
 
 	@RequestMapping(value = "/resultMembTotal", method=RequestMethod.POST)
 	public String resultMembTotal(@Church ChurchVo churchVo, Model model, HttpServletRequest request) {
@@ -64,7 +75,7 @@ public class OfferController {
 		offerVO.setCh_no(churchVo.getCh_no());		
 		offerVO.setOfferDateList(offerService.getOfferDateList(offerVO));
 		
-		List<Map<String, Object>> OfferList = offerService.getOfferByDateCd(offerVO);
+		List<Map<String, Object>> OfferList = offerService.getOfferTotalListByDateCd(offerVO);
 		
 		/*
 		for(int i = 0; i<OfferList.size();i++){
@@ -80,8 +91,8 @@ public class OfferController {
 		return "offer/resultMembTotal";
 	}
 	
-	@RequestMapping(value = "/searchMembTotal", method=RequestMethod.GET)
-	public String searchMembTotal( @Church ChurchVo churchVo, Model model,HttpServletRequest request) {
+	@RequestMapping(value = "/searchTypTotal", method=RequestMethod.GET)
+	public String searchTypTotal( @Church ChurchVo churchVo, Model model,HttpServletRequest request) {
 		/**
 		 * offer 
 		 */
@@ -89,7 +100,52 @@ public class OfferController {
 		List<OfferTypVO> OfferTypList = offerService.getOfferTypByCh(churchVo);	
 		model.addAttribute("OfferTypList", OfferTypList);
 		
-		return "offer/searchMembTotal";
+		return "offer/searchTypTotal";
+	}
+
+	@RequestMapping(value = "/resultTypTotal", method=RequestMethod.POST)
+	public String resultTypTotal(@Church ChurchVo churchVo, Model model, HttpServletRequest request) {
+		/**
+		 * member 
+		 */		
+		
+		String[] offerTypCds = request.getParameterValues("offer_typ_cd");
+		List<String> cdList = new ArrayList<String>();
+		String startY = request.getParameter("startY");
+		String startM = request.getParameter("startM");
+		
+		String endY = request.getParameter("endY");
+		String endM = request.getParameter("endM");
+		
+		logger.debug("--------------기간 : " + startY + startM + " ~ " + endY + endM );
+		
+		
+		OfferVO offerVO = new OfferVO();
+		
+		for(int i=0; i<offerTypCds.length;i++){
+			cdList.add(offerTypCds[i]);			
+		}		
+		offerVO.setCdList(cdList);
+		
+		offerVO.setStartYM(startY + startM);
+		offerVO.setEndYM(endY + endM);		
+		offerVO.setCh_no(churchVo.getCh_no());		
+		offerVO.setOfferDateList(offerService.getOfferDateList(offerVO));
+		
+		List<Map<String, Object>> OfferList = offerService.getOfferTotalListByTyp(offerVO);
+		
+		/*
+		for(int i = 0; i<OfferList.size();i++){
+			Map<String, Object> tmp = OfferList.get(i);
+			byte[] bytes = (byte[])tmp.get("NAME");
+			String nameStr = new String(bytes, StandardCharsets.UTF_8);
+			tmp.put("NAME", nameStr);
+		}	*/
+		
+		model.addAttribute("offerVO", offerVO);
+		model.addAttribute("OfferList", OfferList);
+		
+		return "offer/resultTypTotal";
 	}
 	
 	
@@ -114,6 +170,7 @@ public class OfferController {
 		
 		model.addAttribute("offerList", offerList);
 		model.addAttribute("OfferTypList", OfferTypList);
+		model.addAttribute("memberVO", memberVO);
 		
 		return "offer/membOfferList";
 	}
@@ -125,12 +182,32 @@ public class OfferController {
 		System.out.println("--------------------------" + offerVO.getOffer_dtm());
 		System.out.println("--------------------------" + offerVO.getOffer_typ_cd());
 		
+		String tmpDay = offerVO.getOffer_dtm();		
+		tmpDay = tmpDay.substring(8, 10);
+		int tmpDayNum = Integer.parseInt(tmpDay);
+		int weekNum = tmpDayNum/7 + 1;
+		if(tmpDayNum%7 == 0){weekNum --;}
+		
+		offerVO.setMember_no(memberVO.getMember_no());
+		offerVO.setCh_no(churchVo.getCh_no());
+		offerVO.setName(memberVO.getName());
+		offerVO.setWeek_num(weekNum);
+		
+		int result = offerService.insertOffer(offerVO);
+		
+		if(result < 1){
+			System.out.println("------------...no...-------------");
+		}
+		
 		memberVO.setCh_no(churchVo.getCh_no());
 		List<OfferVO> offerList = offerService.getOfferByMemberNo(memberVO);
 		List<OfferTypVO> OfferTypList = offerService.getOfferTypByCh(churchVo);			
 		
 		model.addAttribute("offerList", offerList);
 		model.addAttribute("OfferTypList", OfferTypList);
+		model.addAttribute("memberVO", memberVO);
+		
+		
 		
 		return "offer/membOfferList";
 	}

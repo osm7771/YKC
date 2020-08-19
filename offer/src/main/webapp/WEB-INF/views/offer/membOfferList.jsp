@@ -14,7 +14,7 @@
   
   <script>
 	$(function() {
-	  $( "#datepicker1" ).datepicker({
+		$j171( "#datepicker1" ).datepicker({
 	    dateFormat: 'yy.mm.dd',
 	    prevText: '이전 달',
 	    nextText: '다음 달',
@@ -50,6 +50,8 @@
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
+    
+    
 
       <!-- Main Content -->
       <div id="content">
@@ -67,6 +69,10 @@
 
           <!-- DataTales Example -->
           <form name="offerInsertForm" id="offerInsertForm" action="/offer/offerInsert" method="post">
+          
+          <input type="hidden" id="member_no" name="member_no" value="${memberVO.member_no}" />
+          <input type="hidden" id="name" name="name" value="${offerList.get(0).name}" />
+          
           <div class="card shadow mb-4">
           
                 <table class="formTable" width="100%" cellspacing="0">
@@ -105,12 +111,12 @@
           </div>
           </form>
           <div class="card shadow mb-4">
-           <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseCardExample">
+           <a href="#collapseOfferTable" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseOfferTable">
                   <h6 class="m-0 font-weight-bold text-primary">헌금 이력</h6>                
            </a>            
-            <div class="collapse" id="collapseCardExample">
-              <div class="offerTable">
-                <table class="offerTable" id="dataTable" width="100%" cellspacing="0">
+            <div class="collapse" id="collapseOfferTable">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>일련번호</th>
@@ -132,10 +138,14 @@
                             <td>${offer.offer_typ_cd}</td>                        
                             <td>${offer.offer_val}원</td>  
                             <td>
-                                <a href="javascript:goSubmit('${offer.seq}')" class="btn btn-secondary btn-icon-split">
+                                <a href="javascript:goModify('${offer.seq}')" class="btn btn-secondary btn-icon-split">
                                     <span class="icon text-white-50"><i class="fas fa-arrow-right"></i></span>
                                     <span class="text">수정</span>
                                 </a>
+                                <a href="#" class="btn btn-danger btn-icon-split">
+				                    <span class="icon text-white-50"><i class="fas fa-trash"></i></span>
+				                    <span class="text">삭제</span>
+				                </a>
                             </td> 
                         </tr>
                     </c:forEach>                    
@@ -150,8 +160,16 @@
 
       </div>
       <!-- End of Main Content -->
+      
+      <%@ include file="../include/footer.jsp" %>
 
-<%@ include file="../include/footer.jsp" %>
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+<%@ include file="../include/footer2.jsp" %>
 </body>
 
 </html>

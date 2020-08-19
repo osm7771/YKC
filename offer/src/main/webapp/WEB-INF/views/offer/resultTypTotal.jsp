@@ -37,56 +37,42 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">성도관리</h1>
-          <p class="mb-4">성도를 검색 해 봅시다 <br/>성도 추가 기능 개발 필요</p>
+          <h1 class="h3 mb-2 text-gray-800">헌금 조회</h1>
+          <p class="mb-4">성도별 헌금을 조회 해 봅시다.<br/> 엑셀다운로드 준비중</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">헌금 종류 : 
+              <c:forEach var="cd" items="${offerVO.cdList}">
+                    <th>${cd}</th>
+              </c:forEach>  
+              </h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>번호</th>
-                      <th>이름</th>
-                      <th>가정</th>
-                      <th>대빵여부</th>
-                      <th>교회이름</th>
-                      
+                      <th>헌금종류</th>
+                      <c:forEach var="date" items="${offerVO.offerDateList}">
+                      <td>${date}</td>
+                      </c:forEach>     
+                      <th>합계</th>                 
                     </tr>
-                  </thead>                  
+                  </thead>
+                  <tfoot>
+                  </tfoot>
                   <tbody>
-                  	<c:forEach var="member" items="${mberList}">
+                  	<c:forEach var="offer" items="${OfferList}">
 						<tr>
-					      <th>${member.member_no}</th>
-					      <td>${member.name}</td>					     
-					      <td>
-					      <c:choose>
-					      	<c:when test="${member.family_name eq null}">
-					      		-
-					      	</c:when>
-					      	<c:otherwise>
-					      		${member.family_name}
-					      	</c:otherwise>
-					      </c:choose>		
-					      </td>					     
-					      <td>
-					      <c:choose>
-					      	<c:when test="${member.type eq '1'}">
-					      		대빵
-					      	</c:when>
-					      	<c:otherwise>
-					      		
-					      	</c:otherwise>
-					      </c:choose>					      
-					      </td>					     
-					      <td>${member.ch_name}</td>					     
+					      <th>${offer.get("OFFER_TYP_NAME")}</th>		
+					      <c:forEach var="date" items="${offerVO.offerDateList}">
+					      <td>${offer.get(date)}</td> 
+					      </c:forEach>
+					      <td>${offer.get("TOTAL")}</td>
 					    </tr>
-					</c:forEach>
-                    
+					</c:forEach>                    
                   </tbody>
                 </table>
               </div>
@@ -106,8 +92,7 @@
 
   </div>
   <!-- End of Page Wrapper -->
-
-<%@ include file="../include/footer2.jsp" %>
+	<%@ include file="../include/footer2.jsp" %>
 </body>
 
 </html>

@@ -22,21 +22,40 @@
 	</select>
 	
 	
-	<select id="getOfferByDateCd" parameterType="com.ykc.offer.offer.vo.OfferVO" resultType="HashMap">
+	<select id="getOfferTotalListByDateCd" parameterType="com.ykc.offer.offer.vo.OfferVO" resultType="HashMap">
         SELECT 
-          NAME
+            NAME
           <foreach collection="offerDateList" item="date" >                     
             ,SUM(if(SUBSTR(OFFER_DTM,1,6) = '${date}', OFFER_VAL, NULL)) AS '${date}'
           </foreach>  
             ,SUM(if(SUBSTR(OFFER_DTM,1,6) BETWEEN #{startYM} AND #{endYM}, OFFER_VAL, NULL)) AS 'TOTAL'     
-         FROM OFFER
-         WHERE OFFER_TYP IN (
-         <foreach collection="cdList" item="cd" separator=",">
-            '${cd}'
-         </foreach>    
-         AND CH_NO = #{ch_no}   
-         )         
-        GROUP BY NAME;
+        FROM OFFER
+        WHERE OFFER_TYP_CD IN (<foreach collection="cdList" item="cd" separator=",">'${cd}'</foreach>)    
+            AND CH_NO = #{ch_no}                  
+        GROUP BY MEMBER_NO
+    </select>
+    
+    <select id="getOfferTotalListByTyp" parameterType="com.ykc.offer.offer.vo.OfferVO" resultType="HashMap">
+        SELECT                  
+            (select OFFER_TYP_NAME from OFFER_TYP where OFFER_TYP_CD = O.OFFER_TYP_CD AND CH_NO = O.CH_NO) AS 'OFFER_TYP_NAME' 
+          <foreach collection="offerDateList" item="date" >                     
+            ,SUM(if(SUBSTR(OFFER_DTM,1,6) = '${date}', OFFER_VAL, NULL)) AS '${date}'
+          </foreach>  
+            ,SUM(if(SUBSTR(OFFER_DTM,1,6) BETWEEN #{startYM} AND #{endYM}, OFFER_VAL, NULL)) AS 'TOTAL'     
+        FROM OFFER O
+        WHERE OFFER_TYP_CD IN (<foreach collection="cdList" item="cd" separator=",">'${cd}'</foreach>)    
+            AND CH_NO = #{ch_no}  
+        GROUP BY OFFER_TYP_CD
+        
+        UNION ALL
+        
+        SELECT                  
+            '총합계' AS OFFER_TYP_NAME
+          <foreach collection="offerDateList" item="date" >                     
+            ,SUM(if(SUBSTR(OFFER_DTM,1,6) = '${date}', OFFER_VAL, NULL)) AS '${date}'
+          </foreach>  
+            ,SUM(if(SUBSTR(OFFER_DTM,1,6) BETWEEN #{startYM} AND #{endYM}, OFFER_VAL, NULL)) AS 'TOTAL'
+        FROM OFFER        
     </select>
     
     
@@ -73,4 +92,34 @@
 			WHERE O.MEMBER_NO = #{member_no}
 			AND O.CH_NO = #{ch_no}
     </select>
+    
+    <insert id="insertOffer" parameterType="com.ykc.offer.offer.vo.OfferVO" >    
+        INSERT INTO OFFER
+		(
+		SEQ,
+		MEMBER_NO,
+		CH_NO,
+		INPUT_DTM,
+		MOD_DTM,
+		WEEK_NUM,
+		OFFER_VAL,
+		NAME,
+		OFFER_DTM,
+		OFFER_TYP_CD
+		)
+		VALUES
+		(
+		#{seq},
+		#{member_no},
+		#{ch_no},
+		DATE_FORMAT(NOW() , '%Y%m%d'),
+		#{mod_dtm},
+		#{week_num},
+		#{offer_val},
+		#{name},
+		DATE_FORMAT(#{offer_dtm},'%Y%m%d'),
+		#{offer_typ_cd}
+		)
+    </insert>
+    
 </mapper> 

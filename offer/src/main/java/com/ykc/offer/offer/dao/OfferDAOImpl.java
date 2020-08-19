@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.ykc.offer.church.vo.ChurchVo;
 import com.ykc.offer.member.vo.MemberVO;
-import com.ykc.offer.offer.vo.OfferVO;
 import com.ykc.offer.offer.vo.OfferTypVO;
+import com.ykc.offer.offer.vo.OfferVO;
 
 @Repository
 public class OfferDAOImpl implements OfferDAO{
@@ -29,10 +29,17 @@ public class OfferDAOImpl implements OfferDAO{
 	}
 	
 	@Override
-	public List<Map<String, Object>> getOfferByDateCd(OfferVO offerVO) {
+	public List<Map<String, Object>> getOfferTotalListByDateCd(OfferVO offerVO) {
 		// TODO Auto-generated method stub
 		
-		return sqlSession.selectList(namespace+".getOfferByDateCd",offerVO);
+		return sqlSession.selectList(namespace+".getOfferTotalListByDateCd",offerVO);
+	}
+	
+	@Override
+	public List<Map<String, Object>> getOfferTotalListByTyp(OfferVO offerVO) {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.selectList(namespace+".getOfferTotalListByTyp",offerVO);
 	}
 		
 	@Override
@@ -48,6 +55,11 @@ public class OfferDAOImpl implements OfferDAO{
 	@Override
 	public List<OfferVO> getOfferByMemberNo(MemberVO memberVO){
 		return sqlSession.selectList(namespace+".getOfferByMemberNo",memberVO);
+	}
+	
+	@Override	
+	public int insertOffer(OfferVO offerVO){
+		return sqlSession.insert(namespace+".insertOffer",offerVO);
 	}
 
 }
