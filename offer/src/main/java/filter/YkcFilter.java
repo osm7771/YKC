@@ -30,8 +30,9 @@ public class YkcFilter extends OncePerRequestFilter{
 		//System.out.println("----------YkcFilter---------");
 		HttpSession session = ((HttpServletRequest)request).getSession();
 		
-		ChurchVo churchInfo = (ChurchVo)session.getAttribute("CHURCH_INFO");
-		
+		//ChurchVo churchInfo = (ChurchVo)session.getAttribute("CHURCH_INFO");
+				
+		/*
 		if(churchInfo == null){
 			churchInfo = new ChurchVo();
 			
@@ -43,7 +44,7 @@ public class YkcFilter extends OncePerRequestFilter{
 			
 			session.setAttribute("CHURCH_INFO", churchInfo);
 		}
-		
+		*/
 		filterChain.doFilter(request, response);
 	}		
 }

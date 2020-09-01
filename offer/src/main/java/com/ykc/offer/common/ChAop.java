@@ -43,10 +43,12 @@ public class ChAop {
         //String[] parameterNames = signature.getParameterNames();
         Class[] parameterTyp = signature.getParameterTypes();
         
-        for(int i = 0;i<retrunArgs.length;i++){
-        	String parameterTypStr = parameterTyp[i].getSimpleName();
-        	if(parameterTypStr.equals("ChurchVo")) retrunArgs[i] = churchVo;
-        }
+        if(churchVo != null) {
+        	for(int i = 0;i<retrunArgs.length;i++){
+            	String parameterTypStr = parameterTyp[i].getSimpleName();
+            	if(parameterTypStr.equals("ChurchVo")) retrunArgs[i] = churchVo;
+            }
+        }  
         
         return joinPoint.proceed(retrunArgs);
     }

@@ -7,6 +7,7 @@ public class ChurchVo {
 	private String ch_name = null;
 	private String ch_addr = null;
 	private String ch_telno = null;
+	private String password = null;
 	
 	public String getCh_no() {
 		return ch_no;
@@ -38,7 +39,11 @@ public class ChurchVo {
 	public void setCh_telno(String ch_telno) {
 		this.ch_telno = ch_telno;
 	}
-	
-	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	
 }

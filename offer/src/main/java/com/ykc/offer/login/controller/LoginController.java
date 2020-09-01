@@ -1,15 +1,19 @@
 package com.ykc.offer.login.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.ykc.offer.church.vo.ChurchVo;
+import com.ykc.offer.common.Church;
+import com.ykc.offer.login.service.LoginService;
 
 /**
  * Handles requests for the application home page.
@@ -17,23 +21,35 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 	
+	@Autowired	
+	private LoginService loginService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/login/login", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String login() {
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		return "login/login";
+	}
+	
+	@RequestMapping(value = "/login/loginProcess", method = RequestMethod.GET)
+	public String loginProcess(@Church ChurchVo churchVo,HttpServletRequest request) {
+					
+		System.out.println("-------------------------" + churchVo.getCh_id());
+		System.out.println("-------------------------" + churchVo.getPassword());
 		
-		String formattedDate = dateFormat.format(date);
+		churchVo = loginService.getChurchByIdPw(churchVo);
+		HttpSession session = request.getSession();
+		if(churchVo != null) {
+			churchVo.setPassword(null);
+			session.setAttribute("CHURCH_INFO", churchVo);
+			return "redirect:/main/main";
+		}
 		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
+		return "redirect:/login/login";
 	}
 	
 }
